@@ -1,0 +1,22 @@
+html *{
+    -webkit-font-smoothing: antialiased;
+}
+
+.title h3{
+    font-size: 25px !important;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    line-height: 1.4em !important;
+    font-weight: 300;
+}
+
+/* alerts */
+
+
+
+
+.alert.alert-info {
+    background-color: #00cae3;
+    color: #fff;
+    height: 40px;
+}

@@ -1,0 +1,154 @@
+{% extends 'logn/base_template.html' %}
+{% block page_title %}
+ <B>STUDENT REGISTER</B>
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    {%load static %}
+
+    <!-- Main content -->
+    
+    <link rel="stylesheet" href="{%static 'css/newformdesign.css'%}">
+
+    <!-- Main content -->
+    <div class="container register-form">
+      <div class="card card-body">
+      <div class="form">
+        <div class="note">
+          
+        </div>
+        <div class="form-content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group" id="xyz">
+              
+              </div>
+
+
+              <script type="text/javascript">
+                function validation()
+                {
+                  var password=document.getElementById("pass")
+           
+                  if(password.value.trim().length<3)
+                  {
+                      alert("Password too short")
+                      return false;
+                  }
+                  else{
+                      return true;
+                  }
+                }
+               
+               
+               </script>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form  onsubmit="return validation();" action="/add1_save" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>FIRST NAME</label>
+                    <input type="text" class="form-control" placeholder="First Name" name="first_name" id="first_name" >
+                  </div>
+                 
+                   <div class="form-group">
+                    <label>LAST NAME</label>
+                    <input type="text" class="form-control" placeholder="Last Name" name="last_name" >
+                  </div>
+                  <div class="form-group">
+                    <label>USERNAME</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username"  >
+                  </div>
+                  <div class="form-group">
+                    <label>PASSWORD</label>
+                    <input type="password" class="form-control" placeholder="Minimum 4 character " name="password" id="pass">
+                  </div>
+
+                      <div class="form-group">
+                        <label>EMAIL ADDRESS  </label>
+                        <input type="email" class="form-control" name="email" placeholder="Enter email" >
+                      </div>
+
+                      <div class="form-group">
+                        <label> PHONE NO</label>
+                        <input type="text" class="form-control" name="phno" placeholder="Enter phno">
+                      </div>
+
+                      <div class="form-group">
+                        <label>DOB</label>
+                        <input type="date" class="form-control" name="date" placeholder="Enter dob">
+                      </div>
+
+
+                      <div class="form-group">
+                        <label>ADDRESS</label>
+                        <input type="text" class="form-control" placeholder="Address" name="address">
+                      </div>
+                       <div class="form-group">
+                        <label>COURSE</label>
+                        <select class="form-control" name="course">
+                            {% for course in course %}
+                              <option value="{{ course.id }}">{{ course.course_name }}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                        <div class="form-group">
+                        <label>GENDER</label>
+                        <select class="form-control" name="gender">
+                            <option>MALE</option>
+                            <option>FEMALE</option>
+                        </select>
+                      </div>
+                      <div class="form-group" >
+                        <label>SESSION </label>
+                        <select class="form-control" name="session_year_id">
+                          {% for sessionyear in sessionyear  %}
+                            <option value="{{ sessionyear.id }}">{{sessionyear.session_start_year}}-{{sessionyear.session_end_year}}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                       
+                      <div class="form-group">
+                        <label>IMAGE</label>
+                        <input type="file" class="form-control" placeholder="Upload image" name="profile_pic">
+                      </div>
+                     
+                      <div class="form-group">
+                        {% if messages %}
+                          {% for message in messages %}
+                          {% if message.tags == 'error' %}
+                          <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                          {% endif %}
+                          {% if message.tags == 'success' %}
+                          <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                          {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                </div>
+              </div>
+
+</div>
+             
+             
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+                </div>
+                <div class="card-footer">
+                  <a href="/student_view"  button type="button"  class="btn btn-secondary btn-warning">VIEW </span></a></td>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+        </div>
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

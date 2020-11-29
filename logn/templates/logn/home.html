@@ -1,0 +1,102 @@
+{% extends 'logn/Homeloginbase.html' %}
+{% block main_content %}
+{% load static %}
+<div class="row">
+<div class="col-sm-6 col-md-4 bg danger">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    .bg-image {
+      /* Full height */
+      height: 50%; 
+      
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    /* Images used */
+    .img1 { background-image: url("img4.jpg"); }
+  .img2 { background-image: url("img3.jpg"); }
+    
+    /* Position text in the middle of the page/image */
+    .bg-text {
+      background-color: black; /* Fallback color */
+      background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+      color: rgb(173, 2, 59);
+      font-weight: bold;
+      font-size: 80px;
+      border: 10px solid #faf25b;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+    }
+    </style>
+    </head>
+    <body>
+    
+      <img class="bg-image img1" src="{% static 'img/img4.jpg'%}"  style="height:50%" width="100%">
+    <img class="bg-image img2" src="{% static 'img/img3.jpg'%}" style="height:50%" width="100%">
+    
+    
+    <div class="bg-text">student management system</div>
+    
+    
+  
+</div>
+
+<div class="col-sm-4 col-md-8">
+   <!---Image Slider--> 
+  
+   <link rel="stylesheet" href="{%static 'css/footer.css'%}" >
+    <img class="mySlides" src="{% static 'img/student.jpg'%}" style="width:100%" >
+    <img class="mySlides" src="{% static 'img/imgstd1.jpg'%}"  style="height:50%" width="100%">
+    <img class="mySlides" src="{% static 'img/desk.png'%}" style="height:50%" width="100%">
+  </div>
+  
+  <script>
+  var myIndex = 0;
+  carousel();
+  
+  function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+  }
+  </script>
+
+
+
+</div>
+
+  
+  </body>
+  </html>
+  
+
+
+</div>
+</div>
+
+</div>
+{% endblock main_content %}

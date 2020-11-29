@@ -1,0 +1,166 @@
+{% extends 'logn/Faculty_template/base_template.html' %}
+{% block page_title %}
+<b>ADD RESULT</b>
+{% endblock page_title %}
+
+{% block main_content %}
+{% load static %}
+
+<!-- Main content -->
+
+<div class="card-body">
+  
+
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" action="/result_save" method="post">
+            <div class="card card-default">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                   
+              <div class="form-group">
+                <label>SESSION START</label>
+                <select class="form-control" name="session_year_id" id="session_year_id"
+                onchange="select('student', document.getElementById('course').value, 'student',this.value);select('subject', this.value, 'subject')">
+                  {% for sessionyear in sessionyear  %}
+                  <option value="{{ sessionyear.id }}">
+                    {{sessionyear.session_start_year}}-{{sessionyear.session_end_year}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+
+              {% with cour=course.0 %}
+              <div class="form-group">
+                <label>COURSE</label>
+                <select class="form-control" name="course" id="course" onchange="select('student',this.value, 'student', document.getElementById('session_year_id').value);select('subject', this.value, 'subject')">
+                  {% for course in course %}
+                  <option value="{{ course.id }}">
+                    {{ course.course_name }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+
+              <!--<div class="form-group">
+                        <label>Course</label>
+                        <select class="form-control" name="course">
+                            {% for course in course %}
+                              <option value="{{ course.id }}">{{ course.course_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>-->
+              
+                <div class="form-group">
+                  <label>STUDENT NAME</label>
+                  <select class="form-control" name="student" id="student" >
+                    {% for student in student %}
+                    <option value="{{ student.id }}">{{ student.first_name }} {{student.last_name }}</option>
+                  {% endfor %}
+                  </select>
+                </div>
+                {% endwith %}
+                <div class="form-group">
+                  <label>SUBJECT </label>
+                  <select class="form-control" name="subject" id="subject">
+                    {% for subject in subjects %}
+                    <option value="{{subject.id }}">{{subject.subject_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                  
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>EXAM MARKS </label>
+                  <input type="text" class="form-control" name="marksobtained" placeholder="Emter marks">
+                </div>
+                <div class="form-group">
+                  <label>ASSIGNMENT MARKS </label>
+                  <input type="text" class="form-control" name="assignment_marks" placeholder="Emter marks">
+                </div>
+
+                <div class="form-group">
+                  <label>PASSING MARKS </label>
+                  <input type="text" class="form-control" name="passmarks" placeholder="Emter marks">
+                </div>
+
+                <div class="form-group">
+                  <label>TOTAL MARKS</label>
+                  <input type="text" class="form-control" name="totalmarks" placeholder="Total Marks">
+                </div>
+              </div>
+
+                <div class="form-group">
+                  {% if messages %}
+                  {% for message in messages %}
+                  {% if message.tags == 'error' %}
+                  <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                  {% endif %}
+                  {% if message.tags == 'success' %}
+                  <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                  {% endif %}
+                  {% endfor %}
+                  {% endif %}
+                </div>
+
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-block">ADD RESULT<button>
+              </div>
+              <div class="card-footer">
+                <a href="/result_view" button type="submit"  class="btn btn-secondary btn-warning">VIEW </span></a></td>
+              </div>
+          </form>
+        </div>
+        </div><!-- /.card -->
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /.content -->
+
+<script>
+  select('student',"{{ course.0.id }}",'student','{{ sessionyear.0.id }}');select('subject', "{{ course.0.id }}", 'subject');
+  function select(type_ac,val, targeted_id, year=null) {
+    if (year)
+    url = window.location.origin + `/fetch_stdd/${type_ac}/${val}/${year}`;
+    else
+    url = window.location.origin + `/fetch_stdd/${type_ac}/${val}`;
+    var request_get = new XMLHttpRequest();
+    console.log(url)
+    // Open a new connection, using the GET request_get on the URL endpoint
+    request_get.open("GET", url, true);
+    request_get.onload = () => {
+      if (request_get.status >= 200 && request_get.status < 400) {
+        str = request_get.responseText
+        console.log(str)
+        var json = JSON.parse(request_get.responseText.substring(0, str.length));
+        element = document.getElementById(targeted_id);
+        n = ''
+        json.forEach((elem) => {
+          console.log(elem)
+          n += `<option value="${elem.id}">${elem.first_name} ${elem.last_name}</option>`
+        })
+        element.innerHTML = `<label>Faculty</label>
+        <select class="form-control" name="student">
+          ${n}
+        </select>
+        `;
+        return json;
+      } else console.log(request_get.status, "error");
+    };
+    request_get.send();
+    console.log(val)
+
+  }
+</script>
+{% endblock main_content %}

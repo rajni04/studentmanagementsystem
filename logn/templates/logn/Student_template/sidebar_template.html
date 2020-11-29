@@ -1,0 +1,110 @@
+{%load static %}
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static "img/studenticon.png" %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+           <span class="brand-text font-weight-light"><h5 style="color:rgb(190, 111, 21);"><B>STUDENT HOME</B></h5></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static "img/studenticon.png" %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block"><h5 style="color:rgb(230, 179, 15)";>{{ user.username }} <B>LOGIN</B></h5></a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item" >
+            
+            <li class="nav-item">
+              <a href="/student_home" class="nav-link ">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+            <b>  HOME</b>
+                
+                </p>
+              </a>
+            </li>
+
+          
+
+          
+
+          <li class="nav-item">
+            {% url 'student_view_attendance_post' as student_view_attendance_post %}
+            <a href="/student_view_attendance" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              <b>ATTENDANCE</b>
+                
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/give_notice_view" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+            <b> NOTIFICATION</b>
+             <span class="badge badge-warning navbar-badge">{{notice_total}}</span>
+               
+              </p>
+            </a>
+          </li>
+         
+
+<!----       <li class="nav-item">
+            <a href="/fee_payment" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+            FEE PAYMENT
+              
+              </p>-->
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/view_result" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+           <b>RESULT</b>
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/give_feedback" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+          <b>   FEEDBACK</b>
+                
+              </p>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="/std_changePass" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+             <b>PASSWORD CHANGE</b>
+                
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

@@ -1,0 +1,73 @@
+{% extends 'logn/BaseSearch_Faculty.html' %}
+{% load static %}
+{% block page_title %}
+ <B>FACULTY</B>
+{% endblock page_title %}
+{% block main_content %}
+<html>
+
+<thead>
+    <link rel='stylesheet ' href="{% static 'css/view.css'%}">
+   
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="styleshee" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+   <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+
+
+      
+      <body>
+
+            
+        
+                <table class="table table-striped table-bordered table-sm">
+        
+
+                 <thead class="thread-dark">
+                    <tr>
+                        <th>SL NO</th>
+                      <th>ID</th>
+                        <th>EMAIL</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>USERNAME</th>
+                        <th>ADDRESS</th>
+                        <th>DEPARTMENT</th>
+                        <th>ACTION</th>
+                    </tr>
+
+                 </thead>
+                 {% for faculty in faculty %}
+                 
+                 <tr>
+                    <td>{{faculty.id}}</td> 
+                    <td>{{faculty.admin.id}}</td> 
+                     <td>{{faculty.admin.email}}</td>
+                     <td>{{faculty.admin.first_name}}</td>
+                     <td>{{faculty.admin.last_name}}</td>
+                     <td>{{faculty.admin.username}}</td>
+                     <td>{{faculty.address}}</td>
+                    
+                     <td>{{faculty.department_id.department_name }}</td>
+                     
+                     <td>
+                         <a href="/edit_faculty/{{ faculty.admin.id }}"  button type="button" class="btn btn-primary mx-2">EDIT </button> </a>
+                         <a href="/delete_faculty/{{faculty.id}}"  button type="button"  class="btn btn-danger mx-2">DELETE</span></a>
+                        
+                     </td>
+                 </tr>
+                 {% endfor %}
+                </table>
+       </body>
+
+
+      </html>
+      
+</head>
+{% endblock main_content %}
+
+
+

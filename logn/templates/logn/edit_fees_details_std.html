@@ -1,0 +1,143 @@
+{% extends 'logn/base_template.html' %}
+{% block page_title %}
+<b>EDIT FEE | | USERNAME :{{ fee_record.student_id.admin.first_name}} {{fee_record.student_id.admin.last_name }} |  #ID : {{fee_record.student_id.id }}</b></b>
+{% endblock page_title %}
+{% block main_content %}
+{%load static %}
+
+    <!-- Main content --> 
+      <div class=" card-body">
+
+      
+
+              <form role="form" action="/edit_fees_details_student_save" method="post">
+                {% csrf_token %}
+                <div class="card card-default">
+  
+              
+  
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                <div class="form-group">
+
+                    <label>Course</label>
+                    <select class="form-control" name="course" value="">
+                        {% for course in course %}
+                        <option value="{{ course.id }}" {% if course.id == fee_record.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                      
+                 <div class="form-group">
+                    <label>STUDENT</label>
+                    <select class="form-control" name="student" value="">
+                        {% for student in student %}
+                        <option value="{{student.id }}" {% if student.id == fee_record.student_id.id %}  selected {% endif %}>{{ student.admin.first_name }} {{student.admin.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                 
+                   <div class="form-group">
+                    <label>PAID</label>
+                    <input type="text" class="form-control" placeholder="Paid" name="paid" value="{{ fee_record.paid }}" >
+                    <input type="hidden" class="form-control" name="id"  value="{{ fee_record.id }}">
+                  </div>
+                      </div>
+                      <div class="col-md-6">
+                  <div class="form-group">
+                    <label>PENDING</label>
+                    <input type="text" class="form-control" placeholder="Pending" name="pending" value="{{ fee_record.pending }}" >
+                    
+                  </div>
+                  <div class="form-group">
+                    <label>DATE</label>
+                    <input type="date" class="form-control" name="date" placeholder="Enter date" value="{{ fee_record.date|date:"Y-m-d" }}" >
+                  </div>
+                
+              <div class="form-group">
+                {% if messages %}
+                  {% for message in messages %}
+                  {% if message.tags == 'error' %}
+                  <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                  {% endif %}
+                  {% if message.tags == 'success' %}
+                  <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                  {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+          </div>
+             
+        </form>
+      </div>
+      <!-- /.card -->
+
+</div>
+
+    </div>
+    </div>
+</div>
+</section>
+{% endblock main_content %}
+
+
+<script> 
+
+    // courses = {"fee"}
+ /* select_course = (course_id) => {
+      console.log(course_id);
+      url = window.location.origin + `/course_fetch/${course_id}`
+      var request_get = new XMLHttpRequest();
+      request_get.open("GET", url, true);
+      request_get.onload = () => {
+        if (request_get.status >= 200 && request_get.status < 400) {
+          console.log(request_get.responseText)
+          var json = JSON.parse(request_get.responseText);
+          document.getElementById("price").value = json[0]["fee"];
+
+          document.getElementById("student");
+        } else console.log(request_get.status, "error");
+      };
+      request_get.send();
+    }
+    select('student',"{{ course.0.id }}",'student');
+    function select(type_ac,val, targeted_id) {
+      url = window.location.origin + `/fetch_std/${type_ac}/${val}`;
+      var request_get = new XMLHttpRequest();
+      console.log(url)
+      // Open a new connection, using the GET request_get on the URL endpoint
+      request_get.open("GET", url, true);
+      request_get.onload = () => {
+        if (request_get.status >= 200 && request_get.status < 400) {
+          str = request_get.responseText
+          console.log(str)
+          var json = JSON.parse(request_get.responseText.substring(0, str.length));
+          element = document.getElementById(targeted_id);
+          n = ''
+          json.forEach((elem) => {
+            console.log(elem)
+            n += `<option value="${elem.id}">${elem.first_name} ${elem.last_name}</option>`
+          })
+          element.innerHTML = `<label>Faculty</label>
+          <select class="form-control" name="faculty">
+            ${n}
+          </select>
+          `;
+          return json;
+        } else console.log(request_get.status, "error");
+      };
+      request_get.send();
+      console.log(val)
+  
+    }*/
+
+
+
+

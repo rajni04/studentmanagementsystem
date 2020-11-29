@@ -1,0 +1,65 @@
+{% extends 'logn/Homeloginbase.html' %}
+{% block main_content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+   <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      
+
+    <link rel="stylesheet" href="{%static 'css/footer.css'%}" >
+   
+   
+    <link rel="stylesheet" href="{%static 'css/aboutstyle.css'%}">
+
+</head>
+
+<style>
+  .column {
+      float: left;
+      width: 33.33%;
+      padding: 4px;
+     
+    }
+</style>
+
+
+<div class="about-secton">
+  <center><h2><b>ABOUT PROJECT</b></h2> </center> 
+
+  
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-md-8">
+      <img src="{% static 'img/student.jpg'%}" alt="Snow" style="width:1000px"  height="500" >
+</div>
+
+
+<div class="col-sm-6 col-md-4 bg danger">
+     <h5 style="color:rgb(8, 1, 1)"; ><b> This project is to store the data of student. Here one login page is used to login by student,faculty and admin.The student can login and see their attendance, result ,change password, reset password,see notification and give
+       feedback to faculty. The faculty can login can work with functionality like attendance(add/upadte/delete), manage 
+       result of student,give notification ,change and reset password, view student record, view course.
+       The admin can add student and faculty and they can manage the functionality -
+       (add/update/delete) department,course,subject,course fees, keep a record of student payment, 
+       allocate course and and subject to faculty, give notification, view feedback of student and 
+       reply also ,view result record ,change and reset password,add year.Amin can also contact people.</h5>
+     </b><b></p>
+    
+    </b>
+    <p>   <b>&nbsp;  </div>
+      </div>
+        
+ {% endblock main_content %}           

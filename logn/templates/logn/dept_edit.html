@@ -1,0 +1,60 @@
+{% extends 'logn/base_template.html' %}
+{% block page_title %}
+<b>EDIT DEPARTMENT | DEPARTMENT ID : {{ department.id }}</b>
+{% endblock page_title %}
+{% block main_content %}
+{%load static %}
+
+    <!-- Main content -->
+    
+    <div class="card-body">
+      
+              <form role="form" action="/dept_edit_save" method="post">
+                  {% csrf_token %}
+                  <div class="card card-default">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                
+                    <label>DEPARTMENT </label>
+                    <input type="text" class="form-control" name="department" placeholder="Enter Department" value="{{ department.department_name }}">
+                    <input type="hidden"  name="department_id"  value="{{department.id }}">
+                  </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-md-6">
+                 
+            
+                </div>
+          
+                  <div class="form-group">
+                    {% if messages %}
+                      {% for message in messages %}
+                      {% if message.tags == 'error' %}
+                      <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                      {% endif %}
+                      {% if message.tags == 'success' %}
+                      <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                      {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+    
+              <!-- /.card-body -->
+    
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+              </div>
+                 
+            </form>
+          </div>
+          <!-- /.card -->
+        </div>
+    
+    
+        </div>
+        </div>
+    </div>
+    </section>
+    {% endblock main_content %}

@@ -1,0 +1,56 @@
+{% extends 'logn/Faculty_template/base_template.html' %}
+{% load static %}
+{% block page_title %}
+ <b>Course</b>
+{% endblock page_title %}
+{% block main_content %}
+<html>
+
+<head>
+    <link rel='stylesheet ' href="{% static 'css/view.css'%}">
+   
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+   <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+
+
+      
+      <body>
+
+            
+        
+                <table class="table table-striped table-bordered table-sm">
+        
+
+                 <thead class="thread-dark">
+                    <tr>
+                      
+                        <th>COURSE NAME</th>
+                       
+                    </tr>
+
+                 </thead>
+                 {% for course in course %}
+                 <tr>
+                    
+                        
+                     <td>{{course.course_name}}</td>
+                     
+                    
+                 </tr>
+                 {% endfor %}
+                </table>
+       </body>
+
+
+      </html>
+      
+</head>
+{% endblock main_content %}
+
+
+

@@ -1,0 +1,69 @@
+{% extends 'logn/homelogin.html' %}
+{% block main_content %}
+{% load static %}
+<html>
+
+    <head>
+        
+        <meta charse="utf-8">
+        <link rel="stylesheet" href="{%static 'css/reg.css'%}" >
+
+    
+    
+        <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+       <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+       
+        
+</head>
+
+         
+
+        <body>
+
+            <form action="register" method="post" >
+                {% csrf_token %}
+
+            <div class="loginbox">
+                <img src="/static/img/avatar.png" class="avatar"/>
+             <H1 style="color:rgb(23, 230, 102)"><B>NEW USER</B></H1>
+                <p><B>USERNAME<B></p>
+                    <input type="text" placeholder="Enter Username" name="username" required >
+                
+
+                 <P>EMAIL</P>
+                    <input type="email" placeholder="Enter email" name="email" required > <br>
+                                                    
+
+                <P>PASSWORD</P>
+                <input class="form-input" type="password" placeholder="Password" id="password"  name="password1" required>
+
+                                                    
+                
+                <P>CONFIRM PASSWORD</P>
+                <input class="form-input" type="password" placeholder=" Confirm Password" id="password1"  name="password2" required>
+             
+                                                                                                       
+                                
+
+               
+               
+                <BR>
+                    <input type="submit" name="" value= "Sign up" >
+                    <a href="{% url 'loginn' %}" button type="button" class="btn btn-danger mx-2"><b>LOGIN</b></button></a>
+               
+                {% if messages %}
+                <div class="col-12">
+                   {% for message in messages %}
+                   {% if message.tags == 'error' %}
+                   <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                   {% endif %}
+                   {% endfor %}
+                 </div>
+                 {% endif %}
+
+            </FORM>
+            </div>
+        </body>
+
+</html>
+{% endblock main_content %}

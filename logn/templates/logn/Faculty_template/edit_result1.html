@@ -1,0 +1,105 @@
+{% extends 'logn/Faculty_template/base_template.html' %}
+{% block page_title %}
+<b>EDIT RESULT | | USERNAME :{{ result.student_id.admin.first_name}} {{result.student_id.admin.last_name }} |  #ID : {{result.student_id.id }}</b>
+{% endblock page_title %}
+{% block main_content %}
+
+ <!-- Main content -->
+ {% load static %}
+ <div class="card-body">
+
+
+            <form role="form" action="/result_edit_save" method="post">
+                
+                  {% csrf_token %}
+                  <div class="card card-default">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                  <div class="form-group">
+                    <label>STUDENT</label>
+                    <select class="form-control" name="student" value="">
+                        {% for student in student %}
+                        <option value="{{student.id }}" {% if student.id == result.student_id.id %}  selected {% endif %}>{{ student.admin.first_name }} {{student.admin.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                          <div class="form-group">
+                            <label>COURSE </label>
+                            <select class="form-control" name="course" disabled="disabled">
+                                {% for course in course %}
+                                      <option value="{{ course.id }}" {% if course.id == result.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                    
+                  <div class="form-group">
+                    <label>SUBJECT </label>
+                    <select class="form-control" name="subject" disabled="disabled">
+                      {% for subject in subjects %}
+                        <option value="{{subject.id }}" {% if subject.id == result.subject_id.id %} selected {% endif %} >{{result.subject_id.subject_name}}</option>
+                      {% endfor %}
+                  </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>SESSION START</label>
+                    <input type="text" class="form-control" name="session_year_id" disabled="disabled"  value="{{ result.session_year_id.session_start_year }} TO {{ result.session_year_id.session_end_year }}" >
+                      
+                  </div>    
+                  </div>
+                  <div class="col-md-6">
+                <div class="form-group">
+                  <label> ASSIGNMENT MARKS </label>
+                  <input type="text" class="form-control" name="assignment_marks" placeholder="Emter marks"  value="{{result.assignment_marks}}">
+                 
+                </div>
+                
+                  <div class="form-group">
+                    <label> EXAM MARKS </label>
+                    <input type="text" class="form-control" name="marksobtained" placeholder="Emter marks"  value="{{result.marksobtained}}">
+                    <input type="hidden" class="form-control" name="id"  value="{{ result.id }}">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>PASSING MARKS </label>
+                    <input type="text" class="form-control" name="passmarks" placeholder="Emter marks"   value="{{ result.passmarks}}">
+                  </div>
+
+                  <div class="form-group">
+                    <label>TOTAL MARKS</label>
+                    <input type="text" class="form-control" name="totalmarks" placeholder="Total Marks"   value="{{result.totalmarks}}">
+                  </div>
+
+                
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                <!-- /.card-body -->
+              </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">SUBMIT<button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+</div>
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

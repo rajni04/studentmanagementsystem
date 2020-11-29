@@ -1,0 +1,98 @@
+{% extends 'logn/Student_template/base_template_noheader.html' %}
+{% block page_title %}
+
+{% endblock page_title %}
+{% block main_content %}
+
+
+{%load static %}
+<div class="card-body">
+  
+<!----<section class="content">
+    <div class="container-fluid">
+                  <div class="row">
+            <div class="col-md-12">-->
+          
+
+            
+            <!-- /.card-header -->
+            <!-- form start -->
+            
+              
+
+                  {% csrf_token %}
+              
+{% if result %}
+<form action="/view_result" method="POST">
+    <div class="card card-default">
+    {% csrf_token %}
+    <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+    <label>COURSE</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" class="form-control" name="course" placeholder="course"><br>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-group">
+    <label>DOB</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" class="form-control" name="date" type="date" placeholder="DOB"></div>
+    <div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" >SUBMIT</button></div>
+    <br>
+    {% if message %}
+    <p>message</p>
+    {% endif %}
+</form>
+</div>
+
+
+{% else %}
+<p><b>NAME:</b>&nbsp;{{result_value.0.student_id.admin.first_name }} {{result_value.0.student_id.admin.last_name }}</p>
+<p><b>COURSE:</b> {{ result_value.0.course_id.course_name }}</p>
+<div class="table">
+    <table class="table">
+        <tr>
+           
+            <th>SUBJECT</th>
+            <th>MARKS OBTAINED</th>
+            <TH>INTERNAL MARKS</TH>
+            <th>PASS MARKS</th>
+            <th>TOTAL MARKS</th>
+            <th>STATUS</th>
+           
+        </tr>
+        <tr>
+<!---- <td>{{ result_value.student_id.first_name }}</td>
+ <td> {{ result_value.course_id.course_name }}</td> -->
+
+    {% for r in result_value %}
+
+    <td>{{ r.subject_id.subject_name }}</td>
+    <td> {{ r.marksobtained }}</td>
+    <td> {{ r.assignment_marks }}</td>
+    <td> {{ r.passmarks }}</td>
+    <td>{{ r.totalmarks }}</td>
+   
+    <td>
+        {% if r.marksobtained >= r.passmarks %}
+        
+             <h6>Pass</h6>
+             
+        {% else %}
+            <h6>Fail</h6>
+        {% endif %}
+
+    </td>
+    </tr>
+
+{% endfor %}
+
+{% endif %}
+
+
+
+{% endblock main_content %}

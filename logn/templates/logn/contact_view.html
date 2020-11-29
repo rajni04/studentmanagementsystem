@@ -1,0 +1,61 @@
+{% extends 'logn/base_template.html' %}
+{% load static %}
+{% block page_title %}
+<B> CONTACT PEOPLE</B>
+{% endblock page_title %}
+{% block main_content %}
+<html>
+
+<head>
+    <link rel='stylesheet ' href="{% static 'css/view.css'%}">
+   
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+   <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+
+
+      
+      <body>
+
+            
+        
+                <table class="table table-striped table-bordered table-sm">
+        
+
+                 <thead class="thread-dark">
+                    <tr>
+                      
+                        <th> NAME</th>
+                        <th> EMAIL</th>
+                        <th> MESSAGE</th>
+                       
+                    </tr>
+
+                 </thead>
+                 {% for contact in contact %}
+                 <tr>
+                    
+                        
+                     <td>{{contact.name}}</td>
+                     <td>{{contact.email}}</td>
+                     <td>{{contact.comment}}</td>
+
+                     
+                    
+                 </tr>
+                 {% endfor %}
+                </table>
+       </body>
+
+
+      </html>
+      
+</head>
+{% endblock main_content %}
+
+
+

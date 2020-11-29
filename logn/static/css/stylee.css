@@ -1,0 +1,14 @@
+ 
+ .carousel-caption h1{
+    top: -660px;
+    font-size:100px;
+    color: rgb(13, 14, 14);
+    position: absolute;
+
+    
+}
+
+li a:hover {
+    background-color: rgb(201, 137, 0);
+  }
+  

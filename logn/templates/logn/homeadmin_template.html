@@ -1,0 +1,143 @@
+{% extends 'logn/base_template.html' %}
+{% block page_title %}
+<b style="color:rgb(6, 7, 87)">HOME</b>
+  {% endblock page_title %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 style="color:rgb(0, 0, 0)">{{ student_count }}</h3>
+
+                <p ><B style="color:rgb(6, 7, 87)">TOTAL STUDENT</B></p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'student_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3 style="color:rgb(0, 0, 0)">{{ faculty_count }}</h3>
+
+                <p><B style="color:rgb(0, 0, 0)">TOTAL FACULTY </B></p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'view_staff' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3 style="color:rgb(0, 0, 0)">{{ course_count }}</h3>
+
+                <p><b> TOTAL COURSE</b></p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'courseview' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3  style="color:rgb(0, 0, 0)">{{ subject_count }}</h3>
+
+                <p><B style="color:rgb(11, 11, 12)">TOTAL SUBJECT</B></p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'subject_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title"><B style="color:rgb(11, 11, 12)">Student and Faculty Chart</B></h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+                  <!-- /.card-body -->
+                </div>
+              </div>
+              
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+              </div>
+          </div>
+          
+              
+          
+          
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+    <!-- /.content -->
+    {% block custom_js %}
+    <script>
+      
+        $(document).ready(function(){
+    
+                var pieData        = {
+                      labels: [
+                           'Students',
+                          'Faculty'
+                      ],
+                      datasets: [
+                        {
+                          data: [{{ student_count }},{{ faculty_count }}],
+                          backgroundColor : ['#f56954', '#00a65a'],
+                        }
+                      ]
+                 };
+    
+                var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+                var pieOptions     = {
+                  maintainAspectRatio : false,
+                  responsive : true,
+                }
+                //Create pie or douhnut chart
+                // You can switch between pie and douhnut using the method below.
+                var pieChart = new Chart(pieChartCanvas, {
+                  type: 'pie',
+                  data: pieData,
+                  options: pieOptions
+                });
+    
+                
+                    
+                    //show total student in each course
+                    
+
+                      });
+                    </script>
+                    {% endblock custom_js %}

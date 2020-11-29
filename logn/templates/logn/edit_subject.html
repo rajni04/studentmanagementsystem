@@ -1,0 +1,76 @@
+{% extends 'logn/base_template.html' %}
+{% block page_title %}
+<B>EDIT SUBJECT | SUBJECT ID: {{subject.id }}</B> 
+{% endblock page_title %}
+{% block main_content %}
+{%load static %}
+
+   
+    
+      <div class=" card-body">
+
+      
+             
+              <form role="form" action="/edit_subject_save" method="post">
+                  {% csrf_token %}
+                  <div class="card card-default">
+  
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                      <label>SUBJECT NAME </label>
+                      <input type="text" class="form-control" name="subject_name" placeholder="Enter Subject" value="{{ subject.subject_name }}">
+                      <input type="hidden" class="form-control" name="subject_id" placeholder="Enter Subject" value="{{ subject.id }}">
+                    </div>
+                   <div class="form-group">
+                    <label>COURSE </label>
+                    <select class="form-control" name="course">
+                        {% for course in course %}
+                              <option value="{{ course.id }}" {% if course.id == subject.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                    <label>FACULTY</label>
+                    <select class="form-control" name="faculty">
+                        {% for faculty in faculty %}
+                          <option value="{{ faculty.id }}" {% if faculty.id == subject.faculty_id.id %} selected {% endif %}>{{ faculty.first_name }} {{ faculty.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+              
+                  <div class="form-group">
+                    {% if messages %}
+                      {% for message in messages %}
+                      {% if message.tags == 'error' %}
+                      <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                      {% endif %}
+                      {% if message.tags == 'success' %}
+                      <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                      {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                
+                          </div>
+                          <!-- /.card-body -->
+                
+                          <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+                          </div>
+                             
+                        </form>
+                      </div>
+                      <!-- /.card -->
+                    </div>
+                
+                
+                    </div>
+                    </div>
+                </div>
+                </section>
+                {% endblock main_content %}

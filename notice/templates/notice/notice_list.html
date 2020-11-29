@@ -1,0 +1,79 @@
+{% extends 'logn/Homeloginbase.html' %}
+{% block main_content %}
+
+
+
+{%load static%}
+
+<html lang="en">
+
+    
+
+<style>
+body{
+
+    background-image: url('logn/static/img/back2.jpeg');
+  
+}
+  
+.moving-body{
+
+    padding:5px;
+
+}
+
+</style>
+<head> 
+
+ <link rel="stylesheet" href="{%static 'css/footer.css'%}" >
+ <link rel="stylesheet" href="{%static 'css/style1.css'%}" >
+ <link rel="stylesheet" href="{%static 'css/aboutstyle.css'%}" >
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="background-image:url('back2.jpeg');"></div>
+  
+<!--<div class="about-section">
+    <h1>NOTIFICATION</h1>
+    
+  </div>-->
+  <center><h2><b>NOTIFICATION</b></h2></center> 
+<div class="container">
+    
+    <div class="container mt-5">
+        
+            <!--<H1  style="font-size:40px; color:rgb(11, 3, 82)"><center><b>NOTICE BOARD</b> </center></H1>-->
+            <div class="alert alert-danger">
+      
+            
+    {% for n1 in notice_list %}
+    <h4><marquee behavior="scroll" direction="up" scrollamount="2" 
+    onmouseover="this.setAttribute('scrollamount',0,0);this.stop()"
+    class="moving-body"> <a href='/notice/notice_list_detail/{{n1.id}}'>{{n1.subject}}</a><span class="right badge badge-danger"></span> </marquee></h4>
+    
+    
+   
+    
+    {%endfor%}
+
+ 
+</div>
+
+</body>
+</html>
+{% endblock main_content %}
+
+
+    
+
+          
+
+
+
+            

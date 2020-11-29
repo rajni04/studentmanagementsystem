@@ -1,0 +1,88 @@
+{% extends 'logn/base_template.html' %}
+{% block page_title %}<b>
+
+SUBJECT</b>
+
+
+{% endblock page_title %}
+
+{% block main_content %}
+{% load static %}
+
+<div class="card-body">  
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="/add_sub_save" method="post">
+                  {% csrf_token %}
+                  <div class="card card-default">
+  
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                    <label>SUBJECT </label>
+                    <input type="text" class="form-control" name="subject_name" placeholder="Enter Subject">
+                  </div>
+
+
+
+         <div class="form-group">
+                    <label>COURSE</label>
+                    <select class="form-control" name="course">
+                        {% for course in course %}
+                          <option value="{{ course.id }}">{{ course.course_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                
+                    <label>FACULTY</label>
+                    <select class="form-control" name="faculty">
+                        {% for faculty in faculty %}
+                          <option value="{{ faculty.id }}">{{ faculty.first_name }} {{ faculty.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                  
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+                  </div>
+                  <div class="card-footer">
+                    <a href="/subject_view"  button type="button"  class="btn btn-secondary btn-warning">VIEW </span></a></td>
+                  </div> 
+                </form>
+              </div>
+              <!-- /.card -->
+  </div>
+  
+  
+            </div>
+            </div>
+        </div>
+        
+      </section>
+      <!-- /.content -->
+      {% endblock main_content %}
+  
+  

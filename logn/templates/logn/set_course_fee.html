@@ -1,0 +1,82 @@
+{% extends 'logn/base_template.html' %}
+{% block page_title %}
+<B>FEE STRUCTURE</B>
+
+
+{% endblock page_title %}
+
+{% block main_content %}
+
+    <!-- Main content -->
+{%load static %}
+
+   
+    
+      <div class="card-body">
+
+      
+              
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="/admin_set_fees_save" method="post">
+                  {% csrf_token %}
+                  <div class="card card-default">
+  
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          
+                  <div class="form-group">
+                    <label>COURSE</label>
+                    <select class="form-control" name="course">
+                        {% for course in course %}
+                          <option value="{{ course.id }}">{{ course.course_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                        </div>
+                        <div class="col-md-6">
+                      <div class="form-group">
+                    <label>TOTAL FEE</label>
+                    <input type="text" class="form-control" name="tot_amount" placeholder="Add amount">
+                  </div>
+                    </div>
+
+
+        
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  
+                
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+                </div>
+                <div class="card-footer">
+                  <a href="/admin_set_fees_view"  button type="button"  class="btn btn-secondary btn-warning">VIEW</span></a></td>
+                </div>    
+              </form>
+            </div>
+            <!-- /.card -->
+
+</div>
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

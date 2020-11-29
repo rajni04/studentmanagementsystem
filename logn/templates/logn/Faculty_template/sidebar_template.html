@@ -1,0 +1,136 @@
+{%load static %}
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static "img/facultyi.png" %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+           <span class="brand-text font-weight-light"><h5><B style="color:chocolate">FACULTY HOME</B></h5></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static "img/facultyi.png" %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block"><h5 style="color:rgb(230, 179, 15)";><B>{{ user.username }} LOGIN</B></h5></a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+
+               <li class="nav-item">
+                {% url 'staff_home' as staff_home %}
+                <a href="/faculty_home " class="nav-link ">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                  <b>  HOME</b>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/take_attendance" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p><b> ATTENDANCE</b></p>
+                </a>
+              </li>
+          
+              <li class="nav-item">
+                {% url 'faculty_update_attendance' as faculty_update_attendance%}
+                <a href="{{ faculty_update_attendance }}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                   <b>
+
+                   UPDATE ATTENDANCE</b>
+                  </p>
+                </a>
+              </li>
+    
+              
+              
+             
+              <li class="nav-item">
+                <a href="/f_student_view" class="nav-link ">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                 <b> STUDENT RECORD</b>
+                    
+                  </p>
+                </a>
+              </li>
+
+
+          <li class="nav-item">
+            <a href="/result" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+           <b> RESULT</b>
+          
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/result_view" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+          <b>   MANAGE RESULT</b>
+              
+              </p>
+            </a>
+          </li>
+
+         
+          
+
+          
+
+         
+         
+
+          <li class="nav-item">
+            <a href="/faculty_give_notice" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+          <b>NOTIFICATION </b>
+              
+              </p>
+            </a>
+          </li>
+         
+
+          <li class="nav-item">
+            <a href="/f_courseview" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+            <b> COURSE</p></b>
+                
+              </p>
+            </a>
+          </li>
+
+          
+          </li>
+          <li class="nav-item">
+            <a href="/fac_changePass" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+          <b>PASSWORD CHANGE</b>
+                
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

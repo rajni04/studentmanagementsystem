@@ -1,0 +1,84 @@
+{% extends 'logn/Homeloginbase.html'%}
+{% block main_content %}
+{% load static %}
+<html>
+
+    <head>
+        <meta charse="utf-8">
+        <link rel="stylesheet" href="{%static 'css/styleadmin.css'%}" >
+
+        <link rel="stylesheet" href="{%static 'css/footer.css'%}" >
+    
+        <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+       <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+       
+       
+       <h2><center><b>LOGIN</b></center></h2>
+
+</head>
+    <script type="text/javascript">
+     function validation()
+     {
+       var password=document.getElementById("pass")
+
+       if(password.value.trim().length<3)
+       {
+           alert("Password too short")
+           return false;
+       }
+       else{
+           return true;
+       }
+     }
+    
+    
+    </script>
+         
+
+        <body>
+
+            <form  onsubmit="return validation();" action="login" method="post" >
+                {% csrf_token %}
+
+            <div class="loginbox">
+                <img src="/static/img/avatar.png" class="avatar"/>
+             <H1  style="color:rgb(23, 230, 102)" ><B>LOGIN</B></H1>
+            <form>
+                <p><B>USERNAME<B></p>
+                    <input type="text" placeholder="Enter Username" name="username" required >
+                
+                
+                <P>PASSWORD</P>
+                    <input type="password" placeholder="Enter Password" name="password" id="pass" required > <br>
+                                                                                                       
+                                
+             
+                     
+
+               
+               <BR>
+                     <input type="submit" name="" value= "Sign in">
+                     <div class="col-12  text-center">
+                
+                     
+                <div class="col-12  text-center">
+                    <a href="{% url 'password_reset' %}">Reset Password</a>
+
+                </div>
+
+                {% if messages %}
+                <div class="col-12">
+                   {% for message in messages %}
+                   {% if message.tags == 'error' %}
+                   <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                   {% endif %}
+                   {% endfor %}
+                 </div>
+                 {% endif %}
+
+            </FORM>
+            </div>
+        </body>
+
+
+{% endblock main_content %}

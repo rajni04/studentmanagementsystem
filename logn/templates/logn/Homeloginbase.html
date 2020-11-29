@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+   <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      
+
+
+    <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+</head>
+<body>
+
+    <!--Navigation-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light  sticky-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+             <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+       &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  
+        &nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  
+       
+         <div>   <h1 style="color:rgb(182, 11, 76)";><B>STUDENT MANAGEMENT SYSTEM </B></h1></div>
+ 
+             <ul class="navbar-nav ml-auto">
+              
+            
+                 
+              
+                 
+                
+              </ul>
+         </div>
+       </div>
+    </div>
+    
+  </li>
+  <ul class="navbar-nav ml-auto">
+    <!-- Messages Dropdown Menu -->
+    <li class="nav-item active">
+                   
+      <a class="nav-link" href="{% url 'home' %}"><B>HOME</B></a>
+   </li>
+   &nbsp;
+    <li class="nav-item">
+  <a class="nav-link" href="{% url 'about' %}"><b>ABOUT</b></a>
+      </a>
+    </li>
+    &nbsp;
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'notice_list' %}"><B>NOTIFICATION</B></a>
+      </a>
+    </li>
+    &nbsp;
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'contact' %}"><b>CONTACT</b></a>
+      </a>
+    </li>
+    &nbsp;
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}"><B>LOGIN</B></a>
+
+       
+      </a>
+    </li>
+
+    
+  </ul>
+    
+    
+ </nav>
+
+            
+<!---Image Slider--> 
+             
+            
+           
+            
+            {% block main_content %} {% endblock main_content %}
+        
+    
+       
+
+<!---Footer-->
+
+</div>
+       
+
+<!---Footer-->
+
+
+<footer id="footer">
+    <div class="container-fluid padding">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <hr class="light">
+                <strong>student management system.</strong>
+                <p>email@myemail.com</p>
+               
+            </div>
+            <div class="col-md-4">
+                <hr class="light">
+
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+{% extends 'logn/Student_template/base_template.html' %}
+{% block page_title %}
+<b>NOTIFICATION</b>
+{% endblock page_title %}
+{% block main_content %}
+<head>
+    <style media="screen">
+      .alert {
+        margin-left: 25%;
+        margin-right: 25%;
+        padding: 20px;
+        background-color: #204d58;
+        color: white;
+      }
+  
+      .w3-panel p {
+        padding-top: 10px;
+      }
+  
+      .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+  
+      .closebtn:hover {
+        color: black;
+      }
+    </style>
+    
+  
+  </head>
+ 
+  
+  
+  
+  <br><br>
+  <div class="w3-panel w3-blue ">
+   
+  </div><br>
+  {%for n in noticee%}     <!------javascript-->
+  <div class="alert">
+    <span class="closebtn" onclick="del_nfication('{{ n.id }}', this);" >&times;</span>
+    <strong> DATE :{{n.date}} || From : {{n.by}}</strong><br> {{n.message}}<br>{{n.course_id.course_name}}
+  </div>
+ <script>
+  del_nfication = (n_id, elem) => {
+    elem.parentElement.style.display='none';
+    console.log(n_id);
+    url = window.location.origin + `/delete_notification/${n_id}`
+    var request_get = new XMLHttpRequest();
+    request_get.open("GET", url, true);
+    request_get.onload = () => {
+      if (request_get.status >= 200 && request_get.status < 400) {
+        console.log(request_get.responseText)
+        var json = JSON.parse(request_get.responseText);
+      } else console.log(request_get.status, "error");
+    };
+    request_get.send();
+  }
+ </script>
+  
+  
+{%endfor%}
+{% endblock main_content %}

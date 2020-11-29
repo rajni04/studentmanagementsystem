@@ -1,0 +1,61 @@
+{% extends 'logn/base_template.html' %}
+{% load static %}
+{% block page_title %}
+<b>COURSE FEES VIEW</b>
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <head>
+      <link rel='stylesheet ' href="{% static 'css/view.css'%}">
+     
+      
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+  
+      <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+     <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+  
+  
+              <!-- /.card-header -->
+              <body>
+
+            
+        
+                <table class="table table-striped table-bordered table-sm">
+                 
+         
+                    <thead class="thread-dark">
+                       <tr>
+                     <th>SL NO</th>
+                      <th>COURSE</th>
+                
+                      <th>AMOUNT </th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for fees in fees %}
+                    <tr>
+                     <td>{{fees.id }}</td>
+                      <td>{{ fees.course_id.course_name }}</td>
+                      <td>{{ fees.tot_amount }}</td>
+                      
+                      <td><a href="/admin_set_fees_edit/{{fees.id }}" class="btn btn-primary">EDIT</a>
+                      <a href="/delete_course_fees/{{fees.id}}"  button type="button"  class="btn btn-danger mx-2">DELETE</span></a></td>
+                        
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /.content -->
+  {% endblock main_content %}
+

@@ -1,0 +1,1 @@
+web: gunicorn finalpro.wsgi --log-file -

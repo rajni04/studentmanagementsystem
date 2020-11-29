@@ -1,0 +1,65 @@
+{% extends 'logn/base_template.html' %}
+{% load static %}
+{% block page_title %}
+<b>SUBJECT</b> 
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <head>
+      <link rel='stylesheet ' href="{% static 'css/view.css'%}">
+     
+      
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'js/bootstrap.js' %}">
+  
+      <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+     <link rel="stylesheet" href="{% static 'js/jquery.js' %}">
+  
+  
+              <!-- /.card-header -->
+              <body>
+
+            
+        
+                <table class="table table-striped table-bordered table-sm">
+                 
+         
+                    <thead class="thread-dark">
+                       <tr>
+                      <th>ID</th>
+                      <th>SUBJECT</th>
+                      <th>COURSE ID</th>
+                      <th>COURSE</th>
+                     
+                      <th>FACULTY</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for subject in subjects %}
+                    <tr>
+                      <td>{{ subject.id }}</td>
+                      <td>{{ subject.subject_name }}</td>
+                      <td>{{ subject.course_id.id }}</td>
+                      <td>{{ subject.course_id.course_name }}</td>
+                      
+                      <td>{{ subject.faculty_id.first_name }} {{ subject.faculty_id.last_name }}</td>
+                      <td><a href="/edit_subject/{{ subject.id }}" class="btn btn-primary">EDIT</a>
+                      <a href="/subject_delete/{{subject.id}}"  button type="button"  class="btn btn-danger mx-2">DELETE</span></a></td>
+                        
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /.content -->
+  {% endblock main_content %}
+

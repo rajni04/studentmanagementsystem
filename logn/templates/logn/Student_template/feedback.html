@@ -1,0 +1,135 @@
+{% extends 'logn/Student_template/base_template.html' %}
+{% block page_title %}
+<b>YOUR FEEDBACK PLEASE!!!!</b>
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    {%load static %}
+    <div class="card-body">
+  
+
+    
+             
+               <form action="/feedback_save" method="post">
+                <div class="card card-default">
+  
+                    {% csrf_token %}
+                    <script>
+        
+                      function select(val) {
+                        url=window.location.origin +  `/fetch_dep/${val}`;
+                        var request_get = new XMLHttpRequest();
+                        console.log(url)
+                        // Open a new connection, using the GET request_get on the URL endpoint
+                        request_get.open("GET", url, true);
+                        request_get.onload = () => {
+                          if (request_get.status >= 200 && request_get.status < 400) {
+                            str = request_get.responseText
+                            console.log(str)
+                            var json = JSON.parse(request_get.responseText.substring(0,str.length));
+                            elem=document.getElementById('form-grp');
+                            n=''
+                            json.forEach((elem)=>{
+                              console.log(elem)
+                              n+=`<option value="${elem.id}">${elem.first_name} ${elem.last_name}</option>`
+                            })
+                            elem.innerHTML=`<label>Faculty</label>
+                            <select class="form-control" name="faculty">
+                              ${n}
+                            </select>
+                            `;
+                            return json;
+                          } else console.log(request_get.status, "error");
+                        };
+                        request_get.send();
+                        console.log(val)
+                        
+                      }
+                     </script>
+                     {% with dep=departments.0 %}
+                     <div class="card-body">
+                     <div class="row">
+                     
+                      <div class="col-md-6">
+                        <div class="form-group">
+                        <label>DEPARTMENT</label>
+                        <select class="form-control" name="department" onchange="select(value)">
+                        {% for department in departments %}
+                                <option value="{{ department.id }}">
+                                                {{ department.department_name }}
+                                              </option>
+                        {% endfor %}
+                            </select>
+                      </div>
+                      <div class="form-group">
+                        <label>FEEDBACK MESSAGE</label>
+                        <textarea class="form-control" rows="6" name="feedback_msg"></textarea>
+                      </div>
+                      </div>
+                      <div class="col-md-6">
+                      <div class="form-group" id ='form-grp'>
+                        <label>FACULTY</label>
+                        <select class="form-control" name="faculty">
+                          {% for faculty in dep.faculty_set.all %}
+                              <option value="{{ faculty.id }}">{{faculty.admin.first_name }} {{faculty.admin.last_name }}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                      {% endwith %}
+                      </div>
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block" >Leave a Feedback Message</button>
+                </div>
+               </form>
+            </div>
+        </div>
+      </div>
+            <!-- /.card -->
+           <div class="card ">
+              <div class="card-header">
+                <h3 style="color:rgb(160, 187, 7)";   class="card-title"><b>Feedback History</b></h3>
+              </div>
+
+               <div class="table">
+               <table class="table">
+                 <h4 >  <tr>
+                      
+                       <th  style="color:rgb(51, 0, 0)"; >FEEDBACK MESSAGE</th>
+                       <th  style="color:rgb(51, 0, 0)";>FACULTY</th>
+                       <th   style="color:rgb(51, 0, 0)";>REPLY</th>
+                      
+                   </tr></h4>
+                   {% for feedback in feedback_data %}
+                        <tr>
+                           <!---- <td>{{feedback.id }}</td>-->
+                            <td  style="color:rgb(1, 1, 31)"; ><b>{{feedback.feedback }}</b></td>
+                            <td  style="color:rgb(5, 0, 51)";><b>{{feedback.faculty_id.admin.first_name }} {{feedback.faculty_id.admin.last_name }}</b></td>
+                            <td  style="color:rgb(5, 0, 51)";><b>{{feedback.feedback_reply }}</b></td>
+                        </tr>
+                   {% endfor %}
+               </table>
+               </div>
+            </div>
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
